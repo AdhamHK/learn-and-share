@@ -1,0 +1,121 @@
+<?php 
+    include "koneksi.php";
+    session_start();
+
+    
+?>
+<div class="header-top-w3layouts">
+	<div class="container">
+		<div class="col-md-6 logo-w3">
+			<a href="../lesson_web_mobile/index.php">
+				<img src="../lesson_web_mobile/static/src/images/logo2.png" alt=""/><h1>FASHION<span>CLUB</span></h1>
+			</a>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+<div class="header-bottom-w3ls">
+	<div class="container">
+		<div class="col-md-8 navigation-agileits">
+			<nav class="navbar navbar-default">
+				<div class="navbar-header nav_2">
+					<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div> 
+				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+					<ul class="nav navbar-nav ">
+						<li class="active"><a href="../lesson_web_mobile/admin_index.php" class="hyper "><span>Home</span></a></li>	
+						<li class="dropdown ">
+							<a href="#" class="dropdown-toggle  hyper" data-toggle="dropdown" ><span>Wanita<b class="caret"></b></span></a>
+							<ul class="dropdown-menu multi">
+								<div class="row">
+									<div class="col-sm-4">
+										<ul class="multi-column-dropdown">
+											<li><a href="../lesson_web_mobile/content/wanita/baju/index.php"><i class="fa fa-angle-right" aria-hidden="true"></i>Pakaian</a></li>
+											<li><a href="../lesson_web_mobile/content/wanita/sepatu/index.php"><i class="fa fa-angle-right" aria-hidden="true"></i>Sepatu</a></li>
+											<li><a href="../lesson_web_mobile/content/wanita/jam_tangan/index.php"><i class="fa fa-angle-right" aria-hidden="true"></i>Jam Tangan</a></li>
+											<li><a href="../lesson_web_mobile/content/wanita/aksesoris/index.php"><i class="fa fa-angle-right" aria-hidden="true"></i>Aksesoris</a></li>
+											<li><a href="../lesson_web_mobile/content/wanita/tas/index.php"><i class="fa fa-angle-right" aria-hidden="true"></i>Tas</a></li>
+										</ul>
+									</div>
+									<div class="col-sm-4 w3l">
+										<a href="../lesson_web_mobile/content/wanita/baju/index.php"><img src="../lesson_web_mobile/static/src/images/menu1.jpg" class="img-responsive" alt=""></a>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle  hyper" data-toggle="dropdown" ><span>Pria<b class="caret"></b></span></a>
+							<ul class="dropdown-menu multi">
+								<div class="row">
+									<div class="col-sm-4">
+										<ul class="multi-column-dropdown">
+											<li><a href="../lesson_web_mobile/content/pria/baju/index.php"><i class="fa fa-angle-right" aria-hidden="true"></i>Pakaian</a></li>
+											<li><a href="../lesson_web_mobile/content/pria/sepatu/index.php"><i class="fa fa-angle-right" aria-hidden="true"></i>Sepatu</a></li>
+											<li><a href="../lesson_web_mobile/content/pria/jam_tangan/index.php"><i class="fa fa-angle-right" aria-hidden="true"></i>Jam Tangan</a></li>
+											<li><a href="../lesson_web_mobile/content/pria/aksesoris/index.php"><i class="fa fa-angle-right" aria-hidden="true"></i>Aksesoris</a></li>
+											<li><a href="../lesson_web_mobile/content/pria/tas/index.php"><i class="fa fa-angle-right" aria-hidden="true"></i>Tas</a></li>
+										</ul>
+									</div>
+									<div class="col-sm-4 w3l">
+										<a href="../lesson_web_mobile/content/pria/baju/index.php"><img src="../lesson_web_mobile/static/src/images/menu3.jpg" class="img-responsive" alt=""></a>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</ul>
+						</li>
+                       	<li><a href="../lesson_web_mobile/pages/admin/index.php" class="hyper "><span>Data Barang</span></a></li>
+						<?php
+							if(@$_SESSION['id_pegawai']){
+							$id_pegawai = $_SESSION['id_pegawai'];
+							$query = "SELECT tb_pegawai.nama_pegawai, tb_hakakses.jenishak FROM tb_pegawai
+								     INNER JOIN tb_hakakses ON tb_pegawai.id_hak=tb_hakakses.id_hak
+									 where id_pegawai = '$id_pegawai'";
+							$hasil = mysqli_query($koneksi, $query);        
+							$row = mysqli_fetch_array($hasil);
+							$nama_pegawai = $row['nama_pegawai'];
+							$jenishak = $row['jenishak'];
+							?>
+							<?php
+							} else {
+							?>
+							  <li><a href="login.php"><span class="hyper hyper-log-in"></span>&nbsp;Masuk</a></li> 
+							<?php     
+							}
+						?>
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="hyper"></span>&nbsp;<?php echo($nama_pegawai),('-'), ($jenishak)?><span class="caret"></span></a>							
+						<ul class="dropdown-menu">
+						<li><a href="#"><span class="hyper hyper-log-out"></span>&nbsp;Pengaturan</a></li>
+						<li><a href="logout.php"><span class="hyper hyper-log-out"></span>&nbsp;Logout</a></li>
+						</ul> 
+						</li>
+							
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<div class="jumbotron-center">
+			<h4><strong>YOU'RE ADMIN</strong></h4>
+		</div>
+		<script>
+				$(document).ready(function(){
+					$(".dropdown").hover(            
+						function() {
+							$('.dropdown-menu', this).stop( true, true ).slideDown("fast");
+							$(this).toggleClass('open');        
+						},
+						function() {
+							$('.dropdown-menu', this).stop( true, true ).slideUp("fast");
+							$(this).toggleClass('open');       
+						}
+					);
+				});
+		</script>
+		<div class="clearfix"></div>
+	</div>
+</div>
