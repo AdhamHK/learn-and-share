@@ -1,5 +1,5 @@
 <?php
-$path_lib = $_SERVER['DOCUMENT_ROOT'] . "/php-project-rizkahadi/models/koneksi.php";
+$path_lib = $_SERVER['DOCUMENT_ROOT'] . "/php-projects/models/koneksi.php";
 // fungsi-fungsi
 /*
 
@@ -25,7 +25,7 @@ me- -an
 se- -i,-kan
 te- -an
 
-Nazief and Adriani’s Algorithm 
+Nazief and Adrianiï¿½s Algorithm 
 
 */
 					
@@ -41,7 +41,7 @@ function cekKamus($kata){
 	}
 }
 
-/*============= Stemming dengan Metode Nazief and Adriani’s Algorithm ===============================*/
+/*============= Stemming dengan Metode Nazief and Adrianiï¿½s Algorithm ===============================*/
 /*
 DP + DP + DP + root word + DS + PP + P
 
@@ -51,13 +51,13 @@ PP : Possessive Pronoun (Inflection) [ku,mu,nya]
 P : Particle (Inflection) [lah,kah,]
 */
 
-// Hapus Inflection Suffixes (“-lah”, “-kah”, “-ku”, “-mu”, atau “-nya”)
+// Hapus Inflection Suffixes (ï¿½-lahï¿½, ï¿½-kahï¿½, ï¿½-kuï¿½, ï¿½-muï¿½, atau ï¿½-nyaï¿½)
 function Del_Inflection_Suffixes($kata){ 
 	$kataAsal = $kata;
 	if(eregi('([km]u|nya|[kl]ah|pun)$',$kata)){ // Cek Inflection Suffixes
 		$__kata = eregi_replace('([km]u|nya|[kl]ah|pun)$','',$kata);
-		if(eregi('([klt]ah|pun)$',$kata)){ // Jika berupa particles (“-lah”, “-kah”, “-tah” atau “-pun”)
-			if(eregi('([km]u|nya)$',$__kata)){ // Hapus Possesive Pronouns (“-ku”, “-mu”, atau “-nya”)
+		if(eregi('([klt]ah|pun)$',$kata)){ // Jika berupa particles (ï¿½-lahï¿½, ï¿½-kahï¿½, ï¿½-tahï¿½ atau ï¿½-punï¿½)
+			if(eregi('([km]u|nya)$',$__kata)){ // Hapus Possesive Pronouns (ï¿½-kuï¿½, ï¿½-muï¿½, atau ï¿½-nyaï¿½)
 				$__kata__ = eregi_replace('([km]u|nya)$','',$__kata);
 				return $__kata__;
 			}
@@ -89,7 +89,7 @@ function Cek_Prefix_Disallowed_Sufixes($kata){
 	return false;
 }
 
-// Hapus Derivation Suffixes (“-i”, “-an” atau “-kan”)
+// Hapus Derivation Suffixes (ï¿½-iï¿½, ï¿½-anï¿½ atau ï¿½-kanï¿½)
 function Del_Derivation_Suffixes($kata){
 	$kataAsal = $kata;
 	if(eregi('(i|an)$',$kata)){ // Cek Suffixes
@@ -112,7 +112,7 @@ function Del_Derivation_Suffixes($kata){
 	return $kataAsal;
 }
 
-// Hapus Derivation Prefix (“di-”, “ke-”, “se-”, “te-”, “be-”, “me-”, atau “pe-”)
+// Hapus Derivation Prefix (ï¿½di-ï¿½, ï¿½ke-ï¿½, ï¿½se-ï¿½, ï¿½te-ï¿½, ï¿½be-ï¿½, ï¿½me-ï¿½, atau ï¿½pe-ï¿½)
 function Del_Derivation_Prefix($kata){
 	$kataAsal = $kata;	
 		
@@ -126,7 +126,7 @@ function Del_Derivation_Prefix($kata){
 		if(cekKamus($__kata__)){
 			return $__kata__;
 		}
-		/*------------end “diper-”, ---------------------------------------------*/
+		/*------------end ï¿½diper-ï¿½, ---------------------------------------------*/
 		if(eregi('^(diper)',$kata)){			
 			$__kata = eregi_replace('^(diper)','',$kata);
 			if(cekKamus($__kata)){			
@@ -146,22 +146,22 @@ function Del_Derivation_Prefix($kata){
 				return $__kata__;
 			}
 		}
-		/*------------end “diper-”, ---------------------------------------------*/
+		/*------------end ï¿½diper-ï¿½, ---------------------------------------------*/
 	}
-	if(eregi('^([tmbp]e)',$kata)){ //Jika awalannya adalah “te-”, “me-”, “be-”, atau “pe-”
+	if(eregi('^([tmbp]e)',$kata)){ //Jika awalannya adalah ï¿½te-ï¿½, ï¿½me-ï¿½, ï¿½be-ï¿½, atau ï¿½pe-ï¿½
 		
-		/*------------ Awalan “te-”, ---------------------------------------------*/
-		if(eregi('^(te)',$kata)){ // Jika awalan “te-”,
-			/* Cara Menentukan Tipe Awalan Untuk Kata Yang Diawali Dengan “te-”
+		/*------------ Awalan ï¿½te-ï¿½, ---------------------------------------------*/
+		if(eregi('^(te)',$kata)){ // Jika awalan ï¿½te-ï¿½,
+			/* Cara Menentukan Tipe Awalan Untuk Kata Yang Diawali Dengan ï¿½te-ï¿½
 			Following Characters
 			Set 1 					Set 2 					Set 3 		Set 4 		Tipe Awalan
-		1.	“-r-“ 					“-r-“ 					- 			- 			none
-		2.	“-r-“ 					Vowel (aiueo) 			- 			- 			ter-luluh
-		3.	“-r-“ 					not(vowel or “-r-”) 	“-er-“ 		vowel 		ter
-		4.	“-r-“ 					not(vowel or “-r-”) 	“-er-“ 		not vowel 	ter-
-		5.	“-r-“ 					not(vowel or “-r-”) 	not “-er-“ 	- 			ter
-		6.	not(vowel or “-r-”) 	“-er-“ 					vowel 		- 			none
-		7.	not(vowel or “-r-”) 	“-er-“ 					not vowel 	- 			te
+		1.	ï¿½-r-ï¿½ 					ï¿½-r-ï¿½ 					- 			- 			none
+		2.	ï¿½-r-ï¿½ 					Vowel (aiueo) 			- 			- 			ter-luluh
+		3.	ï¿½-r-ï¿½ 					not(vowel or ï¿½-r-ï¿½) 	ï¿½-er-ï¿½ 		vowel 		ter
+		4.	ï¿½-r-ï¿½ 					not(vowel or ï¿½-r-ï¿½) 	ï¿½-er-ï¿½ 		not vowel 	ter-
+		5.	ï¿½-r-ï¿½ 					not(vowel or ï¿½-r-ï¿½) 	not ï¿½-er-ï¿½ 	- 			ter
+		6.	not(vowel or ï¿½-r-ï¿½) 	ï¿½-er-ï¿½ 					vowel 		- 			none
+		7.	not(vowel or ï¿½-r-ï¿½) 	ï¿½-er-ï¿½ 					not vowel 	- 			te
 			*/
 			if(eregi('^(terr)',$kata)){ // 1.
 				return $kata;
@@ -220,16 +220,16 @@ function Del_Derivation_Prefix($kata){
 				}
 			}
 		}
-		/*------------end “te-”, ---------------------------------------------*/
-		/*------------ Awalan “me-”, ---------------------------------------------*/
-		if(eregi('^(me)',$kata)){ // Jika awalan “me-”,
-			/* Cara Menentukan Tipe Awalan Untuk Kata Yang Diawali Dengan “me-”
+		/*------------end ï¿½te-ï¿½, ---------------------------------------------*/
+		/*------------ Awalan ï¿½me-ï¿½, ---------------------------------------------*/
+		if(eregi('^(me)',$kata)){ // Jika awalan ï¿½me-ï¿½,
+			/* Cara Menentukan Tipe Awalan Untuk Kata Yang Diawali Dengan ï¿½me-ï¿½
 			Following Characters
 			Set 1 					Set 2 					Set 3 		Set 4 		Tipe Awalan
-		1.	“-ng-“ 					Vowel [kghq] 			- 			- 			meng-
-		2.	“-ny-“ 					Vowel (aiueo) 			- 			- 			meny-s
-		3.	“-m-“ 					[bfpv]				 	- 			- 			mem-
-		4.	“-n-“ 					[cdjsz] 				- 			- 			men-
+		1.	ï¿½-ng-ï¿½ 					Vowel [kghq] 			- 			- 			meng-
+		2.	ï¿½-ny-ï¿½ 					Vowel (aiueo) 			- 			- 			meny-s
+		3.	ï¿½-m-ï¿½ 					[bfpv]				 	- 			- 			mem-
+		4.	ï¿½-n-ï¿½ 					[cdjsz] 				- 			- 			men-
 		5.	- 						- 						- 			-			me-
 
 			*/
@@ -316,15 +316,15 @@ function Del_Derivation_Prefix($kata){
 				
 			}
 		}
-		/*------------end “me-”, ---------------------------------------------*/
-		/*------------ Awalan “be-”, ---------------------------------------------*/
-		if(eregi('^(be)',$kata)){ // Jika awalan “be-”,
-			/* Cara Menentukan Tipe Awalan Untuk Kata Yang Diawali Dengan “be-”
+		/*------------end ï¿½me-ï¿½, ---------------------------------------------*/
+		/*------------ Awalan ï¿½be-ï¿½, ---------------------------------------------*/
+		if(eregi('^(be)',$kata)){ // Jika awalan ï¿½be-ï¿½,
+			/* Cara Menentukan Tipe Awalan Untuk Kata Yang Diawali Dengan ï¿½be-ï¿½
 			Following Characters
 			Set 1 					Set 2 					Set 3 		Set 4 		Tipe Awalan
-		1.	“-r-“ 					Vowel 					- 			- 			ber-
-		2.	“-r-“ 					Not Vowel 	 			- 			- 			ber-
-		3.	“-k-“ 					-				 		- 			- 			be-
+		1.	ï¿½-r-ï¿½ 					Vowel 					- 			- 			ber-
+		2.	ï¿½-r-ï¿½ 					Not Vowel 	 			- 			- 			ber-
+		3.	ï¿½-k-ï¿½ 					-				 		- 			- 			be-
 
 
 			*/
@@ -364,18 +364,18 @@ function Del_Derivation_Prefix($kata){
 				}
 			}
 		}
-		/*------------end “be-”, ---------------------------------------------*/
-		/*------------ Awalan “pe-”, ---------------------------------------------*/
+		/*------------end ï¿½be-ï¿½, ---------------------------------------------*/
+		/*------------ Awalan ï¿½pe-ï¿½, ---------------------------------------------*/
 		
-		if(eregi('^(pe)',$kata)){ // Jika awalan “pe-”,
-			/* Cara Menentukan Tipe Awalan Untuk Kata Yang Diawali Dengan “pe-”
+		if(eregi('^(pe)',$kata)){ // Jika awalan ï¿½pe-ï¿½,
+			/* Cara Menentukan Tipe Awalan Untuk Kata Yang Diawali Dengan ï¿½pe-ï¿½
 			Following Characters
 			Set 1 					Set 2 					Set 3 		Set 4 		Tipe Awalan
-		1.	“-ng-“ 					Vowel [kghq] 			- 			- 			peng-
-		2.	“-ny-“ 					Vowel (aiueo) 			- 			- 			peny-s
-		3.	“-m-“ 					[bfpv]				 	- 			- 			pem-
-		4.	“-n-“ 					[cdjsz] 				- 			- 			pen-
-		5.	“-r-“ 					- 						- 			-			per-
+		1.	ï¿½-ng-ï¿½ 					Vowel [kghq] 			- 			- 			peng-
+		2.	ï¿½-ny-ï¿½ 					Vowel (aiueo) 			- 			- 			peny-s
+		3.	ï¿½-m-ï¿½ 					[bfpv]				 	- 			- 			pem-
+		4.	ï¿½-n-ï¿½ 					[cdjsz] 				- 			- 			pen-
+		5.	ï¿½-r-ï¿½ 					- 						- 			-			per-
 		6.	- 						- 						- 			-			pe-
 
 			*/			
@@ -456,8 +456,8 @@ function Del_Derivation_Prefix($kata){
 				}
 			}
 		}
-		/*------------end “pe-”, ---------------------------------------------*/
-		/*------------ Awalan “memper-”, ---------------------------------------------*/
+		/*------------end ï¿½pe-ï¿½, ---------------------------------------------*/
+		/*------------ Awalan ï¿½memper-ï¿½, ---------------------------------------------*/
 		
 		if(eregi('^(memper)',$kata)){				
 			$__kata = eregi_replace('^(memper)','',$kata);
@@ -481,7 +481,7 @@ function Del_Derivation_Prefix($kata){
 		
 	}
 	
-	/* --- Cek Ada Tidaknya Prefik/Awalan (“di-”, “ke-”, “se-”, “te-”, “be-”, “me-”, atau “pe-”) ------*/
+	/* --- Cek Ada Tidaknya Prefik/Awalan (ï¿½di-ï¿½, ï¿½ke-ï¿½, ï¿½se-ï¿½, ï¿½te-ï¿½, ï¿½be-ï¿½, ï¿½me-ï¿½, atau ï¿½pe-ï¿½) ------*/
 	if(eregi('^(di|[kstbmp]e)',$kata) == FALSE){
 		return $kataAsal;
 	}
