@@ -122,8 +122,8 @@
 					    $filename = "";
 					    $file = null;
 					    if($files_by_name && $files_by_path){
-					        foreach($files_by_name as $file){
-					            $filename = $file;
+					        foreach($files_by_name as $file){			            
+					            $filename = str_replace("txt", "pdf", $file);
 					        }
 					        foreach ($files_by_path as $file){
 					            $file = $file;
