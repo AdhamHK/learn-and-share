@@ -83,7 +83,7 @@
       <div class="row">
       	 <div class="col-md-4">
       	 	<?php
-      	 		$url = "/php-projects/index.html";
+      	 		$url = "../index.html";
       	 		echo '<a class="btn-custom green" href="' . $url . '">Back</a>';
       	 	?>
       	 </div>
@@ -105,30 +105,31 @@
 		    <tbody>
 				<?php
 					$awal = microtime(true);
-					$path_lib_stemming = $_SERVER['DOCUMENT_ROOT'] . "/php-projects/models/stemming.php";
-					$path_lib_nazief = $_SERVER['DOCUMENT_ROOT'] . "/php-projects/models/AJAX_SERVER_stemming.php";
-					$path_lib_pdftotext = $_SERVER['DOCUMENT_ROOT'] . "/php-projects/models/class.pdf2text.php";
-					$path_lib_file_pdf = $_SERVER['DOCUMENT_ROOT'] . "/php-projects/models/Kewirausahaan.php";
+					$path_lib_stemming = "../models/stemming.php";
+					$path_lib_nazief = "../models/enhanced_cs.php";
+					$path_lib_pdftotext = "../models/class.pdf2text.php";
+                    $file_path = "../models/uupangan13.pdf";
 					include($path_lib_stemming);
 					include($path_lib_nazief);
 					include($path_lib_pdftotext);
-					$a = new PDF2Text();
-					$a->setFilename('Kewirausahaan.pdf');
-					$a->decodePDF();
-					echo $a->output();
+					$pdf2text = new PDF2Text();
 					if(isset($_POST['submit'])){
 					    $files_by_path = $_FILES['uploaded-file']['tmp_name'];
 					    $files_by_name = $_FILES['uploaded-file']['name'];
 					    $filename = "";
 					    $file = null;
+
 					    if($files_by_name && $files_by_path){
 					        foreach($files_by_name as $file){			            
-					            $filename = str_replace("txt", "pdf", $file);
+					            $filename = $file;
 					        }
 					        foreach ($files_by_path as $file){
 					            $file = $file;
 					        }
-					        $getcontent = file_get_contents($file);
+					        $pdf2text->setFilename($file);
+					        $pdf2text->decodePDF();
+					        $parsed = $pdf2text->output();
+					        $getcontent = $parsed;
 					        $someWords  = strtolower($getcontent);
 					        /* ini proses insert ke tabel korpus */
 					        $dbhost = 'localhost';
@@ -247,6 +248,7 @@
 									    'join korpus korpus on token.korpus_id = korpus.namafile where korpus.namafile = "'.$filename.'" GROUP BY token.term, token.korpus_id';
 					    $result_tf = mysqli_query($koneksi, $tf_query);
 					    $term_frequencies = mysqli_fetch_all($result_tf, MYSQLI_ASSOC);
+
 					    foreach($term_frequencies as $tf){
 					        $sql = 'INSERT INTO tb_term_frequency'.
 									        '(Term, Korpus_id, Frekuensi) '.

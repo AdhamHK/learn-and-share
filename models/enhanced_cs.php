@@ -1,5 +1,5 @@
 <?php
-$path_lib = $_SERVER['DOCUMENT_ROOT'] . "/php-projects/models/koneksi.php";
+$path_lib = "../models/koneksi.php";
 // fungsi-fungsi
 /*
 

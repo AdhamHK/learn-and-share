@@ -1,6 +1,6 @@
 <?php
 	function cari($kata){
-		$path_lib = $_SERVER['DOCUMENT_ROOT'] . "/php-projects/models/koneksi.php";
+		$path_lib = "../models/koneksi.php";
 		include($path_lib);
 		$hasil = mysql_num_rows(mysql_query("SELECT * FROM tb_katadasar WHERE katadasar='$kata'"));
 		return $hasil;
