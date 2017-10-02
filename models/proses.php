@@ -1,7 +1,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Task 1 : Stemming Porter Bahasa Indonesia Dari Sebuah Lirik Lagu</title>
+	<title>Task 1 : Stemming Porter & Nazief Bahasa Indonesia Dari File PDF</title>
 
 	<!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -88,7 +88,7 @@
       	 	?>
       	 </div>
          <div class="col-md-12">
-         <center><h2>Result Algoritma Stemming Porter Bahasa Indonesia : </h2></center><hr/>
+         <center><h2>Result Algoritma Stemming Porter & Nazief Bahasa Indonesia : </h2></center><hr/>
 		  <table class="table table-hover">
 		    <thead>
 		      <tr>
