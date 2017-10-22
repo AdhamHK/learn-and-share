@@ -105,7 +105,8 @@
 					include($path_lib_pdftotext);
 					$stemmerFactory = new \Sastrawi\Stemmer\StemmerFactory();
 					$stemmer  = $stemmerFactory->createStemmer();
-					$pdf2text = new PDF2Text();
+					$parser = new \Smalot\PdfParser\Parser();
+
 					if(isset($_POST['submit'])){
 					    $files_by_path = $_FILES['uploaded-file']['tmp_name'];
 					    $files_by_name = $_FILES['uploaded-file']['name'];
@@ -119,11 +120,8 @@
 					        foreach ($files_by_path as $file){
 					            $file = $file;
 					        }
-// 					        $text = (new Pdf())->setPdf($file)->text();
-					        $pdf2text->setFilename($file);
-					        $pdf2text->decodePDF();
-					        $parsed = $pdf2text->output();
-					        $getcontent = $parsed;
+					        $pdf = $parser->parseFile($file);
+					        $getcontent = $pdf->getText();
 					        $someWords  = strtolower($getcontent);
 					        /* ini proses insert ke tabel korpus */
 					        $dbhost = 'localhost';
