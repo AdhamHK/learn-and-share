@@ -124,10 +124,11 @@
 					        $getcontent = $pdf->getText();
 					        $someWords  = strtolower($getcontent);
 					        /* ini proses insert ke tabel korpus */
-					        $dbhost = 'localhost';
-					        $dbuser = 'root';
-					        $dbpass = '';
-					        $koneksi = mysqli_connect($dbhost, $dbuser, $dbpass,'stbi');
+					        $dbuser = "learnand_admin";
+					        $dbpass = "@hayukalbu";
+					        $db = "learnand_stbi";
+					        $dbhost = "jkt09.dewaweb.com:2083";
+					        $koneksi = mysqli_connect($dbhost, $dbuser, $dbpass, $db);
 					        if(! $koneksi )
 					        {
 					            die('Gagal Koneksi: ' . mysqli_error($koneksi));

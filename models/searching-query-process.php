@@ -117,10 +117,11 @@
 					        $outputs = "'" . implode("', '", preg_split('/[\s]+/', $stemmer->stem($keyword))) . "'";
 					        echo "<strong> Keyword: </strong>".$keyword. "\n \n \n";
 					        echo "<strong>  Kata Dasar: </strong>". $outputs. "<br/>";
-					        $dbhost = 'localhost';
-					        $dbuser = 'root';
-					        $dbpass = '';
-					        $koneksi = mysqli_connect($dbhost, $dbuser, $dbpass,'stbi');
+					        $dbuser = "learnand_admin";
+					        $dbpass = "@hayukalbu";
+					        $db = "learnand_stbi";
+					        $dbhost = "jkt09.dewaweb.com:2083";
+					        $koneksi = mysqli_connect($dbhost, $dbuser, $dbpass, $db);
 					        if(! $koneksi )
 					        {
 					            die('Gagal Koneksi: ' . mysqli_error($koneksi));
@@ -216,23 +217,6 @@
                                         <td>".number_format($fpw['Ranking'], 2)."</td>
 									</tr>";
 				            }
-// 				            foreach($outputs as $word){
-
-
-
-//         					    if (!$result_tf){
-//         					        continue;
-//         					    }
-
-//         					    $term_frequencies = mysqli_fetch_all($result_tf, MYSQLI_ASSOC);
-					    
-
-
-
-
-
-// 				            }
-
 					        /* Selesai */
 					    }
 					}
