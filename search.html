@@ -59,23 +59,23 @@
                         <h2>Tasks / Demos</h2><br/>
                         <div>
                             <ul class="nav nav-tabs" role="tablist">
-                                <li class="active"><a href="#upload-korpus" role="tab" data-toggle="tab">Sistem Temu Kembali - Upload PDF File as Korpus</a></li>
-                                <li><a href="search.html" role="tab" data-toggle="tab">Sistem Temu Kembali - Searching Word</a></li>
+                                <li><a href="index.html" role="tab" data-toggle="tab">Sistem Temu Kembali - Upload PDF File as Korpus</a></li>
+                                <li class="active"><a href="#search" role="tab" data-toggle="tab">Sistem Temu Kembali - Searching Word</a></li>
                             </ul>
                             <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="upload-korpus">
+                                <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="search">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <b>Algoritma Stemming Porter Bahasa Indonesia : </b>
                                             <br/><br/>
                                             <p> 
-                                            	Upload Dokument PDF dari Perundang-undangan Indonesia
+                                            	Searching Keywords of Undang-undang Indonesia
                                             </p>
                                         </div>
                                         <div class="col-md-6">
                                         	<br/>
-                                            <form action="./models/stemming-process.php" method="POST" enctype="multipart/form-data">
-                                                  <input type="file" name="uploaded-file" id="demo-fileInput-lesson-one">
+                                            <form action="./models/searching-query-process.php" method="POST" enctype="multipart/form-data">
+                                                  <input type="text" name="keyword">
                                                   <input type="submit" name="submit" class="btn-custom green" value="Submit">
                                             </form>
                                         </div>
