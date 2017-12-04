@@ -1,4 +1,4 @@
-# Package requireds:
+# Packages are required:
 install.packages("twitteR")
 install.packages("ROAuth")
 install.packages("ggplot2")
@@ -8,22 +8,21 @@ install.packages("e1071")
 install.packages("cluster")
 install.packages("datasets")
 
-# Packages that doesn't exist changed installation using devtools packages
+# Packages that have non-zero exit state, need to change the installation by using devtools::install_cran.
+# It's happen on R Version higher above than 3++.
 # install.packages("fpc")
 # install.packages("RTextTools")
 # install.packages("wordcloud")
 # install.packages("tm")
 
-# Import Libraries
+# Install Slam & Flexmix Dependencies of TM & FPC and also How to import some libraries
 require('devtools')
-# Install Slam & Flexmix Dependencies of TM & FPC
 devtools::install_url("https://cran.r-project.org/src/contrib/Archive/slam/slam_0.1-37.tar.gz")
 devtools::install_url("https://cran.r-project.org/src/contrib/Archive/flexmix/flexmix_2.3-13.tar.gz")
 devtools::install_cran("tm")
 devtools::install_cran("wordcloud")
 devtools::install_cran("RTextTools")
 devtools::install_cran("fpc")
-
 library('e1071')
 library('twitteR')
 library('ROAuth')
