@@ -37,6 +37,11 @@ library('cluster')
 library('datasets')
 
 # Twitter with account: @adhamhayukalbu in Developer Mode
+# Params:
+# 1). Consumer Key
+# 2). Consumer Secret Key
+# 3). Access Token
+# 4). Access Token Secret Key
 setup_twitter_oauth("1dddKM1AhDPtHWRCizmIkZWhM",
                     "EeWRcwQNvnIzrSsAxazZRSXw94XT99qzGvSIncSs1eyeTK4W6v",
                     "932581012587945985-fmFD1OfHaFdcX44ZQFqVp4PhyylcAEf",
